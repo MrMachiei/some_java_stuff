@@ -4,11 +4,13 @@ public class Dog {
    String color;
 
    void barking() {
+      //hauhau
    }
 
    void hungry() {
    }
 
    void sleeping() {
+      //zzzzzz
    }
 }
