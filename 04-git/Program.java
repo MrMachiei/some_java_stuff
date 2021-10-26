@@ -11,5 +11,6 @@ public class Dog {
    }
 
    void sleeping() {
+      //zzzzzz
    }
 }
