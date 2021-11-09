@@ -43,6 +43,10 @@ Osoba oferująca towar na aukcji.
 
 Osoba chcąca zakupić produkt na aukcji.
 
+<a id="ac3"></a>
+### AC3: System płatności
+
+Zewnętrzny system dokonywania płatności.
 
 ## Przypadki użycia poziomu użytkownika
 
@@ -84,16 +88,19 @@ Osoba chcąca zakupić produkt na aukcji.
 **Aktorzy:** [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. [Kupujący](#ac2) podaje do systemu proponowaną kwotę.
-2. System akceptuje kwotę.
-3. System aktualizuje informację o najwyższej ofercie.
-4. System informuje o poprawnym zakończeniu przebijania aktulanie najwyższej oferty.
+
+1. [Kupujący](#ac2) wybiera aukcję, którą chce licytować.
+2. System wyświetla formularz.
+3. [Kupujący](#ac2) podaje do systemu proponowaną kwotę.
+4. System akceptuje kwotę.
+5. System aktualizuje informację o najwyższej ofercie.
+6. System informuje o poprawnym zakończeniu licytowania.
 
 **Scenariusze alternatywne:** 
 
-2.A. Podana kwota jest niepoprawna.
-* 2.A.1. System informuje o problemie.
-* 2.A.2. Przejdź do kroku 1.
+4.A. Podana kwota jest niepoprawna.([BR1](#br1))
+* 4.A.1. System informuje o problemie.
+* 4.A.2. Przejdź do kroku 1.
 
 <a id="uc4"></a>
 ### UC3: Wygranie aukcji
@@ -102,28 +109,28 @@ Osoba chcąca zakupić produkt na aukcji.
 
 **Scenariusz główny:**
 1. System zamyka możliwość dalszego licytowania.
-2. System informuje kupującego o wygranej aukcji.
+2. System informuje kupującego o wygranej aukcji.([BR2](#br2))
 3. System inormuje sprzedającego o zakończeniu aukcji.
 
 <a id="uc5"></a>
 ### UC5: Przekazanie należności za produkt
 
-**Aktorzy:** [Kupujący](#ac2)
+**Aktorzy:** [Kupujący](#ac2), [System płatności](#ac3)
 
 **Scenariusz główny:**
-1. [Kupujący](#ac2) zgłasza do systemu chęć wykonania płatności.
-2. System wyświetla formularz płatności.
-3. [Kupujący](#ac2) dokonuje płatności za towar.
-4. System informuje kupującego o autoryzacji płatności.
-5. System informuje sprzedającego o dokonaniu przez kupującego płatności.
-6. System przenosi prawa własności do produktu ze sprzedającego na kupującego.
-7. System informuje sprzedającego o konieczności przekazania produktu kupującemu.
+1. [Kupujący](#ac2) zgłasza do systemu wykonanie płatności.
+2. System uruchamia system płatności.
+3. [Kupujący](#ac2) dokonuje płatności za produkt.
+4. [System płatności](#ac3) przekazuje do systemu informacje o płatności.
+5. System informuje kupującego o autoryzacji płatności.([BR3](#br3))
+6. System informuje sprzedającego o dokonaniu przez kupującego płatności. 
+7. System przenosi prawa własności do produktu ze sprzedającego na kupującego.
 
 **Scenariusze alternatywne:** 
 
-3.A. Płatność zakończona niepowodzeniem.
-* 3.A.1. System informuje o problemie.
-* 3.A.2. Przejdź do kroku 2.
+5.A. Płatność zakończona niepowodzeniem. 
+* 5.A.1. System informuje o problemie.
+* 5.A.2. Przejdź do kroku 2.
 ---
 ## Obiekty biznesowe (inaczej obiekty dziedzinowe lub informacyjne)
 
@@ -134,6 +141,14 @@ Aukcja jest formą zawierania transakcji kupna-sprzedaży, w której Sprzedając
 ### BO2: Produkt
 
 Fizyczny lub cyfrowy obiekt, który ma zostać sprzedany w ramach aukcji.
+
+### BO3: Płatność
+
+Cyfrowa transakcja finansowa wykonana za produkt wygrany w ramach aukcji.
+
+### BO4: Prawa własności
+
+Prawa notarialne do produktu podlegającego aukcji.
 
 ## Reguły biznesowe
 
@@ -147,6 +162,11 @@ Złożenie oferty wymaga zaproponowania kwoty wyższej niż aktualnie oferowana 
 ### BR2: Rozstrzygnięcie aukcji
 
 Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (upłynięcia czasu) złożył najwyższą ofertę.
+
+<a id="br3"></a>
+### BR3: Autoryzacja płatności
+
+Płatność zostaje autoryzowana w momencie otrzymania potwierdzenia jej wykonania.
 
 ## Macierz CRUDL
 
