@@ -16,17 +16,17 @@ Specyfikacja wymagań funkcjonalnych w ramach informatyzacji procesu sprzedaży 
 
 **Scenariusz główny:**
 1. [Sprzedający](#ac1) wystawia produkt na aukcję. ([UC1](#uc1))
-2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))
-3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))
-4. [Kupujący](#ac2) przekazuje należność Sprzedającemu.
+2. [Kupujący](#ac2) oferuje kwotę za produkt wyższą od aktualnie najwyższej oferty. ([BR1](#br1))([UC2](#uc2))
+3. [Kupujący](#ac2) wygrywa aukcję ([BR2](#br2))([UC3](#uc3))
+4. [Kupujący](#ac2) przekazuje należność Sprzedającemu.([UC5](#uc5))
 5. [Sprzedający](#ac1) przekazuje produkt Kupującemu.
 
 **Scenariusze alternatywne:** 
 
-2.A. Oferta Kupującego została przebita, a [Kupujący](#ac2) pragnie przebić aktualnie najwyższą ofertę.
+2.A. Oferta Kupującego została przebita, a [Kupujący](#ac2) pragnie przebić aktualnie najwyższą ofertę.([UC2](#uc2))
 * 2.A.1. Przejdź do kroku 2.
 
-3.A. Czas aukcji upłynął i [Kupujący](#ac2) przegrał aukcję. ([BR2](#br2))
+3.A. Czas aukcji upłynął i [Kupujący](#ac2) przegrał aukcję. ([BR2](#br2))([UC4](#uc4))
 * 3.A.1. Koniec przypadku użycia.
 
 ---
@@ -50,11 +50,13 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+ 
 
 [Kupujący](#ac2)
-* ...
-
+* [UC2](#uc2): Licytowanie produktu
+* [UC3](#uc3): Wygranie aukcji
+* [UC4](#uc4): Przegranie aukcji
+* [UC5](#uc5): Przekazanie należności za produkt
 ---
 <a id="uc1"></a>
 ### UC1: Wystawienie produktu na aukcję
@@ -77,21 +79,53 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Licytowanie
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:** [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. ...
+1. [Kupujący](#ac2) podaje do systemu proponowaną kwotę.
+2. System akceptuje kwotę.
+3. System aktualizuje informację o najwyższej ofercie.
+4. System informuje o poprawnym zakończeniu przebijania aktulanie najwyższej oferty.
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+2.A. Podana kwota jest niepoprawna.
+* 2.A.1. System informuje o problemie.
+* 2.A.2. Przejdź do kroku 1.
 
+<a id="uc4"></a>
+### UC3: Wygranie aukcji
+
+**Aktorzy:** [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. System zamyka możliwość dalszego licytowania.
+2. System informuje kupującego o wygranej aukcji.
+3. System inormuje sprzedającego o zakończeniu aukcji.
+
+<a id="uc5"></a>
+### UC5: Przekazanie należności za produkt
+
+**Aktorzy:** [Kupujący](#ac2)
+
+**Scenariusz główny:**
+1. [Kupujący](#ac2) zgłasza do systemu chęć wykonania płatności.
+2. System wyświetla formularz płatności.
+3. [Kupujący](#ac2) dokonuje płatności za towar.
+4. System informuje kupującego o autoryzacji płatności.
+5. System informuje sprzedającego o dokonaniu przez kupującego płatności.
+6. System przenosi prawa własności do produktu ze sprzedającego na kupującego.
+7. System informuje sprzedającego o konieczności przekazania produktu kupującemu.
+
+**Scenariusze alternatywne:** 
+
+3.A. Płatność zakończona niepowodzeniem.
+* 3.A.1. System informuje o problemie.
+* 3.A.2. Przejdź do kroku 2.
 ---
-
-## Obiewkty biznesowe (inaczje obiekty dziedzinowe lub informatycjne)
+## Obiekty biznesowe (inaczej obiekty dziedzinowe lub informacyjne)
 
 ### BO1: Aukcja
 
