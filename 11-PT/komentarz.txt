@@ -1,0 +1,17 @@
+sredni czas:
+3291
+przepustowość:
+1.2/sec
+
+moja poprawka: 
+policzenie przed wejsciem do petli for(Customer customer) srednich wydatkow (byly liczone 2 razy dla kazdego klienta)
+
+sredni czas:
+59
+przepustowość:
+1.8/sec
+
+
+2.0/sec
+
+28 drukarek 5.5/sec
